@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qual é a sua trava no inglês? — Elaine Vieira</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0d0d11;
+    --bg2:     #16161e;
+    --bg3:     #1e1e28;
+    --yellow:  #ffd200;
+    --ydark:   #c8a200;
+    --blue:    #3b6494;
+    --white:   #f5f2e8;
+    --gray-l:  #9e9b8e;
+    --gray-m:  #4a4840;
+    --gray-d:  #28282e;
+    --font-h:  'Poppins', sans-serif;
+    --font-s:  'Special Elite', monospace;
+    --r:       12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-h);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 80px;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    width: 100%;
+    background: var(--yellow);
+    padding: 10px 24px;
+    text-align: center;
+    font-family: var(--font-s);
+    font-size: 14px;
+    color: var(--bg);
+    letter-spacing: .04em;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    padding: 48px 24px 0;
+    max-width: 640px;
+    width: 100%;
+  }
+
+  .header-tag {
+    font-family: var(--font-s);
+    font-size: 13px;
+    color: var(--yellow);
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+
+  .header h1 span { color: var(--yellow); font-family: var(--font-s); }
+
+  .header p {
+    font-size: 16px;
+    color: var(--gray-l);
+    line-height: 1.65;
+    margin-bottom: 36px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    max-width: 640px;
+    width: 100%;
+    padding: 0 24px;
+    margin-bottom: 8px;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--gray-l);
+    margin-bottom: 8px;
+    font-family: var(--font-s);
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--bg3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 4px;
+    background: var(--yellow);
+    border-radius: 2px;
+    transition: width .4s ease;
+  }
+
+  /* ── QUIZ CARD ── */
+  .quiz-card {
+    background: var(--bg2);
+    border: 1px solid var(--gray-m);
+    border-radius: var(--r);
+    padding: 36px 32px;
+    max-width: 640px;
+    width: calc(100% - 48px);
+    margin-top: 24px;
+  }
+
+  .q-num {
+    font-family: var(--font-s);
+    font-size: 12px;
+    color: var(--yellow);
+    letter-spacing: .08em;
+    margin-bottom: 12px;
+  }
+
+  .q-text {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+
+  /* ── OPTIONS ── */
+  .options { display: flex; flex-direction: column; gap: 12px; }
+
+  .opt {
+    background: var(--bg3);
+    border: 1px solid var(--gray-m);
+    border-radius: var(--r);
+    padding: 16px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--white);
+    text-align: left;
+    font-family: var(--font-h);
+    line-height: 1.5;
+    transition: border-color .15s, background .15s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .opt:hover { border-color: var(--yellow); }
+
+  .opt.selected {
+    border-color: var(--yellow);
+    background: rgba(255,210,0,.08);
+  }
+
+  .opt-check {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--gray-m);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    transition: all .15s;
+  }
+
+  .opt.selected .opt-check {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--bg);
+    font-weight: 700;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    align-items: center;
+  }
+
+  .btn-next {
+    background: var(--yellow);
+    color: var(--bg);
+    border: none;
+    border-radius: 4px;
+    padding: 14px 32px;
+    font-family: var(--font-h);
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity .15s, transform .1s;
+    flex: 1;
+  }
+
+  .btn-next:hover { transform: translateY(-1px); }
+  .btn-next:disabled { opacity: .3; cursor: not-allowed; transform: none; }
+
+  .btn-back {
+    background: none;
+    border: 1px solid var(--gray-m);
+    border-radius: 4px;
+    padding: 14px 20px;
+    font-family: var(--font-h);
+    font-size: 15px;
+    color: var(--gray-l);
+    cursor: pointer;
+    transition: border-color .15s;
+  }
+
+  .btn-back:hover { border-color: var(--gray-l); }
+
+  /* ── RESULTADO ── */
+  .resultado { display: none; max-width: 640px; width: calc(100% - 48px); margin-top: 24px; }
+
+  .result-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .result-tag {
+    font-family: var(--font-s);
+    font-size: 13px;
+    color: var(--yellow);
+    letter-spacing: .08em;
+    margin-bottom: 12px;
+  }
+
+  .result-nome {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .result-sub {
+    font-size: 16px;
+    color: var(--gray-l);
+    font-style: italic;
+    font-family: var(--font-s);
+  }
+
+  .result-desc-card {
+    background: var(--bg2);
+    border: 1px solid var(--gray-m);
+    border-left: 4px solid var(--yellow);
+    border-radius: 0 var(--r) var(--r) 0;
+    padding: 24px 24px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: var(--white);
+    line-height: 1.7;
+  }
+
+  .sinais-title {
+    font-family: var(--font-s);
+    font-size: 12px;
+    color: var(--yellow);
+    letter-spacing: .07em;
+    margin-bottom: 14px;
+  }
+
+  .sinais-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .sinais-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--gray-l);
+    line-height: 1.5;
+  }
+
+  .sinal-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--yellow);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ── SCORE BARS ── */
+  .scores-section {
+    background: var(--bg2);
+    border: 1px solid var(--gray-m);
+    border-radius: var(--r);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .scores-title {
+    font-family: var(--font-s);
+    font-size: 12px;
+    color: var(--yellow);
+    letter-spacing: .07em;
+    margin-bottom: 20px;
+  }
+
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .score-label {
+    font-size: 13px;
+    color: var(--gray-l);
+    min-width: 120px;
+    font-family: var(--font-s);
+  }
+
+  .score-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: var(--bg3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    height: 6px;
+    background: var(--gray-m);
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+
+  .score-bar-fill.top { background: var(--yellow); }
+
+  .score-val {
+    font-size: 13px;
+    color: var(--gray-l);
+    min-width: 30px;
+    text-align: right;
+    font-family: var(--font-s);
+  }
+
+  /* ── CTA ── */
+  .cta-box {
+    background: var(--bg);
+    border: 2px solid var(--yellow);
+    border-radius: var(--r);
+    padding: 28px 28px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .cta-tag {
+    font-family: var(--font-s);
+    font-size: 12px;
+    color: var(--yellow);
+    letter-spacing: .07em;
+    margin-bottom: 12px;
+  }
+
+  .cta-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .cta-desc {
+    font-size: 15px;
+    color: var(--gray-l);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .btn-cta {
+    display: block;
+    background: var(--yellow);
+    color: var(--bg);
+    border: none;
+    border-radius: 4px;
+    padding: 18px 32px;
+    font-family: var(--font-h);
+    font-weight: 800;
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .1s;
+    width: 100%;
+  }
+
+  .btn-cta:hover { transform: translateY(-2px); }
+
+  .cta-sub {
+    font-size: 13px;
+    color: var(--gray-l);
+    margin-top: 12px;
+  }
+
+  .btn-refazer {
+    background: none;
+    border: 1px solid var(--gray-m);
+    border-radius: 4px;
+    padding: 14px 24px;
+    font-family: var(--font-h);
+    font-size: 14px;
+    color: var(--gray-l);
+    cursor: pointer;
+    width: 100%;
+    transition: border-color .15s;
+  }
+
+  .btn-refazer:hover { border-color: var(--gray-l); color: var(--white); }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray-m);
+  }
+
+  .footer a { color: var(--gray-l); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 480px) {
+    .quiz-card, .resultado { width: calc(100% - 32px); padding: 24px 20px; }
+    .q-text { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Diagnóstico gratuito — descubra sua trava no inglês em 8 perguntas</div>
+
+<div class="header">
+  <p class="header-tag">ELAINE VIEIRA • @ELAINEVIEIRAINGLES</p>
+  <h1>Qual é a sua<br><span>trava no inglês?</span></h1>
+  <p>Você estuda, sabe vocabulário, entende quando ouve — mas na hora de falar, algo te impede. Descubra agora o que está acontecendo e como resolver.</p>
+</div>
+
+<!-- PROGRESSO -->
+<div class="progress-wrap" id="progressWrap" style="display:none">
+  <div class="progress-info">
+    <span id="progressLabel">Pergunta 1 de 8</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-card" id="quizCard">
+  <p class="q-num" id="qNum">PERGUNTA 1 DE 8</p>
+  <p class="q-text" id="qText"></p>
+  <div class="options" id="options"></div>
+  <div class="nav">
+    <button class="btn-back" id="btnBack" style="display:none" onclick="voltar()">← Voltar</button>
+    <button class="btn-next" id="btnNext" disabled onclick="avancar()">Próxima →</button>
+  </div>
+</div>
+
+<!-- RESULTADO -->
+<div class="resultado" id="resultado"></div>
+
+<div class="footer" id="footerEl" style="display:none">
+  <p>© 2026 Elaine Vieira · <a href="https://instagram.com/elainevieiraingles" target="_blank">@elainevieiraingles</a></p>
+</div>
+
+<script>
+const URL_PRODUTO = 'SUA_URL_KIWIFY';
+
+const perguntas = [
+  {
+    texto: "Quando você precisa falar inglês em uma situação importante, o que geralmente acontece?",
+    opcoes: [
+      { texto: "Minha mente vai a mil e as palavras simplesmente não saem", pontos: {ansiedade:2, perfeccionismo:1} },
+      { texto: "Começo a falar mas paro porque acho que estou errando", pontos: {perfeccionismo:3} },
+      { texto: "Fico em silêncio e deixo outra pessoa falar por mim", pontos: {fuga:3} },
+      { texto: "Falo, mas saio me sentindo péssima com o que disse", pontos: {autocritica:3} },
+    ]
+  },
+  {
+    texto: "Quando você erra uma palavra ou faz uma confusão em inglês, o que sente?",
+    opcoes: [
+      { texto: "Vergonha intensa — quero sumir dali", pontos: {ansiedade:2, autocritica:1} },
+      { texto: "Raiva de mim mesma — sabia que isso ia acontecer", pontos: {autocritica:3} },
+      { texto: "Fico desconfortável, mas costumo seguir em frente", pontos: {fuga:1} },
+      { texto: "Travo completamente e não consigo continuar", pontos: {ansiedade:3} },
+    ]
+  },
+  {
+    texto: "Quando pensa em praticar inglês, o que passa pela sua cabeça?",
+    opcoes: [
+      { texto: "Nunca vou falar como um nativo — então pra que tentar?", pontos: {perfeccionismo:3} },
+      { texto: "Até consigo estudar, mas na hora de usar — congelo", pontos: {ansiedade:2, fuga:1} },
+      { texto: "Já desisti de me iludir. Inglês não é para mim.", pontos: {autocritica:2, fuga:1} },
+      { texto: "Começo animada, mas desisto quando vejo que demora", pontos: {fuga:2, autocritica:1} },
+    ]
+  },
+  {
+    texto: "Em qual dessas situações você mais sente dificuldade?",
+    opcoes: [
+      { texto: "Reuniões de trabalho ou apresentações profissionais", pontos: {ansiedade:2, perfeccionismo:1} },
+      { texto: "Conversas casuais e bate-papos informais", pontos: {fuga:2, autocritica:1} },
+      { texto: "Quando precisam me entender e não posso errar", pontos: {ansiedade:3} },
+      { texto: "Quando estou sendo observada ou avaliada por alguém", pontos: {perfeccionismo:2, autocritica:1} },
+    ]
+  },
+  {
+    texto: "Como você se descreveria em relação ao inglês hoje?",
+    opcoes: [
+      { texto: "Entendo tudo — mas na hora de falar, nada sai", pontos: {ansiedade:2, fuga:1} },
+      { texto: "Falo, mas me saboto com autocrítica o tempo todo", pontos: {autocritica:3} },
+      { texto: "Evito situações onde precisaria usar o inglês", pontos: {fuga:3} },
+      { texto: "Prefiro não falar a falar e errar", pontos: {perfeccionismo:3} },
+    ]
+  },
+  {
+    texto: "Qual dessas frases ressoa mais com o que você sente?",
+    opcoes: [
+      { texto: '"Preciso estar pronta antes de falar em inglês"', pontos: {perfeccionismo:3} },
+      { texto: '"Quando começo a falar, meu coração acelera e tudo some"', pontos: {ansiedade:3} },
+      { texto: '"Sei inglês, mas minha mente me boicota a todo momento"', pontos: {autocritica:2, ansiedade:1} },
+      { texto: '"É mais fácil não tentar do que arriscar e passar vergonha"', pontos: {fuga:3} },
+    ]
+  },
+  {
+    texto: "Você já morou ou ficou um tempo em um país de língua inglesa?",
+    opcoes: [
+      { texto: "Sim — e mesmo assim não me sinto fluente", pontos: {autocritica:2, perfeccionismo:1} },
+      { texto: "Não, nunca tive essa oportunidade", pontos: {} },
+      { texto: "Passei um tempo fora mas evitava falar mesmo lá", pontos: {fuga:3} },
+      { texto: "Não, mas tenho o vocabulário — só trava na hora de usar", pontos: {ansiedade:2, perfeccionismo:1} },
+    ]
+  },
+  {
+    texto: "Quando alguém te elogia seu inglês, o que você sente?",
+    opcoes: [
+      { texto: "Incredulidade — acho que a pessoa está sendo educada", pontos: {autocritica:3} },
+      { texto: "Alívio — mas logo volta a ansiedade para a próxima vez", pontos: {ansiedade:3} },
+      { texto: "Nada — raramente chego a falar o suficiente para ganhar elogio", pontos: {fuga:3} },
+      { texto: "Gratidão, mas logo penso em tudo que fiz errado", pontos: {perfeccionismo:2, autocritica:1} },
+    ]
+  },
+];
+
+const perfis = {
+  ansiedade: {
+    nome: "Trava da Ansiedade",
+    sub: "Seu inglês existe — o medo chega antes dele.",
+    cor: "#3b6494",
+    desc: "Você sabe inglês. O problema é que quando a situação aparece, o sistema nervoso entra em alarme antes de qualquer palavra. Coração acelera, mente esvazia, voz some. Não é falta de vocabulário — é o seu cérebro interpretando a situação como ameaça.",
+    sinais: [
+      "A mente fica em branco exatamente quando mais precisa",
+      "Sente sintomas físicos — coração acelerado, voz travada, mãos suadas",
+      "Sabe o que quer dizer, mas as palavras não saem",
+      "A ansiedade aumenta conforme a situação é mais importante",
+    ],
+    solucao: "Técnicas de ancoragem e regulação do sistema nervoso aplicadas ao momento exato da fala. É o que trabalhamos no Mês 3 da Imersão.",
+    cta_texto: "Você tem a Trava da Ansiedade — e o Inglês sem Travas foi criado para isso. O método combina técnicas de PNL e meditações guiadas especialmente para regular o sistema nervoso antes e durante situações em inglês.",
+  },
+  perfeccionismo: {
+    nome: "Trava do Perfeccionismo",
+    sub: "Você espera estar pronta — mas esse dia nunca chega.",
+    cor: "#c8a200",
+    desc: "Você se preparou. Estudou. Sabe mais inglês do que imagina. Mas existe uma voz que diz que ainda não é suficiente — que precisa mais um curso, mais uma gramática, mais uns meses. Essa voz é o perfeccionismo. E ele nunca dá o sinal verde.",
+    sinais: [
+      "Evita situações de inglês porque sente que ainda não está pronta",
+      "Para no meio de uma frase para procurar a palavra perfeita",
+      "Fica comparando seu inglês com o de nativos ou falantes fluentes",
+      "Prefere o silêncio a arriscar qualquer tipo de erro",
+    ],
+    solucao: "Reprogramação da crença 'preciso falar perfeito' com técnicas de reframe e questionamento de realidade. O tema do Mês 2 da Imersão.",
+    cta_texto: "Você tem a Trava do Perfeccionismo — e o Inglês sem Travas vai te mostrar que a espera por estar pronta é o próprio bloqueio. Com PNL e meditação guiada, você aprende a falar com o inglês que tem — agora.",
+  },
+  autocritica: {
+    nome: "Trava da Autocrítica",
+    sub: "Você é sua crítica mais severa — e isso paralisa.",
+    cor: "#8b4513",
+    desc: "Você até fala inglês — mas sai da conversa se sentindo péssima. Analisa cada palavra, cada pausa, cada erro. O julgamento interno é mais intenso do que qualquer crítica externa poderia ser. Isso cria um ciclo: quanto mais se critica, mais trava da próxima vez.",
+    sinais: [
+      "Relembra conversas em inglês focando só nos erros que cometeu",
+      "Duvida de si mesma mesmo quando a conversa foi bem",
+      "Acredita que as pessoas percebem cada erro que comete",
+      "Sente que seu inglês nunca é bom o suficiente — para nada",
+    ],
+    solucao: "Ressignificação de memórias e instalação de nova identidade como falante de inglês. O tema do Mês 4 e 6 da Imersão.",
+    cta_texto: "Você tem a Trava da Autocrítica — e o Inglês sem Travas vai te ajudar a ressignificar as memórias que instalaram esse padrão e criar uma nova identidade como falante de inglês.",
+  },
+  fuga: {
+    nome: "Trava da Evitação",
+    sub: "Você se protege — e perde oportunidades sem perceber.",
+    cor: "#2d7a4f",
+    desc: "Seu mecanismo de defesa é sólido: quando o inglês aparece, você encontra uma forma de não precisar usá-lo. Deixa outra pessoa falar, muda de assunto, evita a situação. É uma estratégia que funcionou por um tempo — mas está te custando oportunidades reais.",
+    sinais: [
+      "Evita viagens, reuniões ou situações onde inglês seria necessário",
+      "Sempre deixa outra pessoa assumir conversas em inglês por você",
+      "Sente alívio quando uma situação em inglês é cancelada",
+      "Já adiou ou desistiu de metas profissionais por conta do inglês",
+    ],
+    solucao: "Exposição gradual e segura com técnicas de PNL para criar novas referências de experiência bem-sucedida. O tema do Mês 3 e 5 da Imersão.",
+    cta_texto: "Você tem a Trava da Evitação — e o Inglês sem Travas vai te criar novas referências de experiência segura em inglês para que o idioma deixe de parecer uma ameaça.",
+  },
+};
+
+const nomes = {ansiedade:'Ansiedade', perfeccionismo:'Perfeccionismo', autocritica:'Autocrítica', fuga:'Evitação'};
+let atual = 0;
+let respostas = Array(perguntas.length).fill(null);
+
+function renderPergunta() {
+  const q = perguntas[atual];
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('qNum').textContent = `PERGUNTA ${atual+1} DE ${perguntas.length}`;
+  document.getElementById('qText').textContent = q.texto;
+  const pct = Math.round((atual / perguntas.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Pergunta ${atual+1} de ${perguntas.length}`;
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('btnBack').style.display = atual > 0 ? 'block' : 'none';
+  const next = document.getElementById('btnNext');
+  next.textContent = atual < perguntas.length - 1 ? 'Próxima →' : 'Ver meu resultado →';
+  next.disabled = respostas[atual] === null;
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  q.opcoes.forEach((o, oi) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt' + (respostas[atual] === oi ? ' selected' : '');
+    btn.innerHTML = `<span class="opt-check">${respostas[atual] === oi ? '✓' : ''}</span>${o.texto}`;
+    btn.onclick = () => selecionar(oi);
+    opts.appendChild(btn);
+  });
+}
+
+function selecionar(oi) {
+  respostas[atual] = oi;
+  renderPergunta();
+}
+
+function avancar() {
+  if (respostas[atual] === null) return;
+  if (atual < perguntas.length - 1) {
+    atual++;
+    renderPergunta();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  } else {
+    mostrarResultado();
+  }
+}
+
+function voltar() {
+  if (atual > 0) {
+    atual--;
+    renderPergunta();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+}
+
+function calcularResultado() {
+  const scores = {ansiedade:0, perfeccionismo:0, autocritica:0, fuga:0};
+  respostas.forEach((r, qi) => {
+    if (r === null) return;
+    const pts = perguntas[qi].opcoes[r].pontos;
+    Object.keys(pts).forEach(k => { scores[k] += pts[k]; });
+  });
+  const sorted = Object.entries(scores).sort((a,b) => b[1]-a[1]);
+  return {principal: sorted[0][0], scores, sorted, total: sorted.reduce((s,[,v])=>s+v, 0)};
+}
+
+function mostrarResultado() {
+  document.getElementById('quizCard').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'none';
+  const {principal, scores, sorted, total} = calcularResultado();
+  const p = perfis[principal];
+  const res = document.getElementById('resultado');
+  res.style.display = 'block';
+  res.innerHTML = `
+    <div class="result-header">
+      <p class="result-tag">SEU DIAGNÓSTICO</p>
+      <p class="result-nome">${p.nome}</p>
+      <p class="result-sub">${p.sub}</p>
+    </div>
+
+    <div class="result-desc-card">${p.desc}</div>
+
+    <p class="sinais-title">SINAIS QUE VOCÊ PROVAVELMENTE RECONHECE</p>
+    <ul class="sinais-list">
+      ${p.sinais.map(s => `<li><div class="sinal-dot"></div>${s}</li>`).join('')}
+    </ul>
+
+    <div class="scores-section">
+      <p class="scores-title">SEU PERFIL COMPLETO</p>
+      ${sorted.map(([k,v]) => `
+        <div class="score-row">
+          <span class="score-label">${nomes[k]}</span>
+          <div class="score-bar-wrap">
+            <div class="score-bar-fill${k===principal?' top':''}" style="width:${total>0?Math.round(v/total*100):0}%"></div>
+          </div>
+          <span class="score-val">${v}pts</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="cta-box">
+      <p class="cta-tag">PRÓXIMO PASSO</p>
+      <p class="cta-title">Inglês sem Travas</p>
+      <p class="cta-desc">${p.cta_texto}</p>
+      <a href="${URL_PRODUTO}" class="btn-cta">Quero destravar meu inglês — R$ 47 →</a>
+      <p class="cta-sub">eBook + 5 Meditações Guiadas • Acesso imediato • 7 dias de garantia</p>
+    </div>
+
+    <button class="btn-refazer" onclick="reiniciar()">Refazer o quiz</button>
+  `;
+  document.getElementById('footerEl').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function reiniciar() {
+  respostas = Array(perguntas.length).fill(null);
+  atual = 0;
+  document.getElementById('resultado').style.display = 'none';
+  document.getElementById('quizCard').style.display = 'block';
+  document.getElementById('footerEl').style.display = 'none';
+  renderPergunta();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+renderPergunta();
+</script>
+</body>
+</html>
